@@ -17,6 +17,7 @@ import java_cup.runtime.Symbol;
 %char
 %column
 %full
+%unicode
 
 MAS		= "+"
 MENOS		= "-"
@@ -25,6 +26,18 @@ DIV             = "/"
 POT             = "^"
 PAR_IZQ         = "("
 PAR_DER         = ")"
+
+MAYOR           = ">"
+MENOR           = "<"
+MAYORIGUAL      = ">="
+MENORIGUAL      = "<="
+IGUAL           = "=="
+DIFERENTE       = "!="
+
+AND             = "&&"
+OR              = "||"
+NOT             = "!"
+
 
 ID              = [A-Za-z][_0-9A-Za-z]*
 ENTERO          = [0-9]+
@@ -38,6 +51,18 @@ ENTER   = [\ \n]
 <YYINITIAL> {ID}            { return new Symbol(sym.ID, yyline, yycolumn, yytext()); }
 <YYINITIAL> {ENTERO}        { return new Symbol(sym.ENTERO, yyline, yycolumn, yytext()); }
 <YYINITIAL> {DECIMAL}       { return new Symbol(sym.DECIMAL, yyline, yycolumn, yytext()); }
+
+<YYINITIAL> {IGUAL}         { return new Symbol(sym.IGUAL, yyline, yycolumn, null); }
+<YYINITIAL> {MAYOR}         { return new Symbol(sym.MAYOR, yyline, yycolumn, null); }
+<YYINITIAL> {MENOR}         { return new Symbol(sym.MENOR, yyline, yycolumn, null); }
+<YYINITIAL> {MAYORIGUAL}    { return new Symbol(sym.MAYORIGUAL, yyline, yycolumn, null); }
+<YYINITIAL> {MENORIGUAL}    { return new Symbol(sym.MENORIGUAL, yyline, yycolumn, null); }
+<YYINITIAL> {DIFERENTE}     { return new Symbol(sym.DIFERENTE, yyline, yycolumn, null); }
+
+<YYINITIAL> {AND}           { return new Symbol(sym.AND, yyline, yycolumn, null); }
+<YYINITIAL> {OR}            { return new Symbol(sym.OR, yyline, yycolumn, null); }
+<YYINITIAL> {NOT}           { return new Symbol(sym.NOT, yyline, yycolumn, null); }
+
 <YYINITIAL> {MAS}           { return new Symbol(sym.MAS, yyline, yycolumn, null); }
 <YYINITIAL> {MENOS}	    { return new Symbol(sym.MENOS, yyline, yycolumn, null); }
 <YYINITIAL> {MULT}          { return new Symbol(sym.MULT, yyline, yycolumn, null); }
